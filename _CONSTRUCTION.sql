@@ -87,3 +87,32 @@ CREATE TABLE slotXproduct{
 	FOREIGN KEY slotID REFERENCES Slot(slotID),
 	FOREIGN KEY productID REFERENCES Product(productID)
 	}
+	
+CREATE TABLE Invoice{
+	invoiceID INT,
+	invoiceDate DATE,
+	PRIMARY KEY invoiceID
+	}
+	
+CREATE TABLE invoiceXproduct{
+	invoiceID INT,
+	productID INT,
+	PRIMARY KEY (invoiceID,productID),
+	FOREIGN KEY invoiceID REFERENCES Invoice(invoiceID),
+	FOREIGN KEY productID REFERENCES Product(productID)
+	}
+
+CREATE TABLE Shipment{
+	shipmentID INT,
+	shiptmentExpected DATE,
+	shipmentReceived DATE,
+	PRIMARY KEY shipmentID
+	}
+	
+CREATE TABLE shipmentXinvoice{
+	shipmentID INT,
+	invoiceID INT,
+	PRIMARY KEY (shipmentID,invoiceID),
+	FOREIGN KEY shipmentID REFERENCES Shipment(shipmentID),
+	FOREIGN KEY invoiceID REFERENCES Invoice(invoiceID)
+	}	
